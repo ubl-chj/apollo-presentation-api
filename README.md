@@ -7,10 +7,15 @@ A GraphQL server to support IIIF Presentation API validation
 1. Clone this repository: `git clone https://github.com/ubl-chj/apollo-presentation-api.git`
 2. run `npm install`
 
-## Usage
+## Server Only Usage
+1. cd server
+2. run `npm start`
+3. go to http://localhost:4000
 
-1. run `npm start`
-2. go to http://localhost:4000
+## React Client Usage (WIP)
+1. start server
+2. cd client
+3. run `npm start`
 
 Example queries:
 
