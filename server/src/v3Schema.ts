@@ -5,26 +5,26 @@ export const typeDefs = gql`
         id: String!
         type: String!
         label: Label
-        summary: String
-        metadata: [Metadata]
-        homepage: Homepage
-        logo: Logo
-        thumbnail: Thumbnail
+        summary: String!
+        metadata: [Metadata]!
+        homepage: [Homepage]!
+        logo: [Logo]!
+        thumbnail: [Thumbnail]!
         requiredStatement: RequiredStatement
         partOf: PartOf
         behavior: Behavior
         items(id: String): [Canvas]!
-        structures: [Structure]
+        structures: [Structure]!
     }
     type Metadata {
         label: Label
         value: Value
     }
     type Label {
-        en: [String]
+        en: [String]!
     }
     type Value {
-        en: [String]
+        en: [String]!
     }
     type Homepage {
         id: String
@@ -39,8 +39,8 @@ export const typeDefs = gql`
     }
     type Service {
         id: String
-        type: String
-        profile: String
+        type(type: String): String
+        profile(profile: String): String
     }
     type Thumbnail {
         id: String

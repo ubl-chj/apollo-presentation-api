@@ -10,7 +10,7 @@ const client = new ApolloClient({
 const App = () => (
   <ApolloProvider client={client}>
     <div>
-      <h2>Manifest Validator <span aria-label="" role="img">🚀</span></h2>
+      <h2>GraphQL Manifest Validator <span aria-label="" role="img">🚀</span></h2>
       <QueryForm/>
     </div>
   </ApolloProvider>
