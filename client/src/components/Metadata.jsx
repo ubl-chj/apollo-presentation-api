@@ -26,8 +26,8 @@ export class Metadata extends React.Component {
 
   buildItemList(data) {
     return (
-      <div className="metadata">
-          <ul className="list-group">
+      <div className="Hj59Ib">
+          <ul>
             {data.manifest.metadata.map((metadata) =>
               <MetadataItem key={uuidv4()} language={defaultLang} label={metadata.label} value={metadata.value}/>)
             }

@@ -67,13 +67,13 @@ export const typeDefs = gql`
         label: String
         width: Int
         height: Int
-        items: [AnnotationPage]
+        items: [AnnotationPage]!
         metadata: [Metadata]
     }
     type AnnotationPage {
         id: String
         type: String
-        items: [Annotation]
+        items: [Annotation]!
     }
     type Annotation {
         id: String
@@ -102,7 +102,9 @@ export const typeDefs = gql`
         items: [Canvas]
     }
     type Query {
-        canvas(manifestId: String!, canvasId: String!): [Canvas]
+        annotation(manifestId: String!, canvasId: String!, annotationPageId: String!, annotationId: String!): Annotation
+        annotationPage(manifestId: String!, canvasId: String!, annotationPageId: String!): AnnotationPage
+        canvas(manifestId: String!, canvasId: String!): Canvas
         manifest(id: String!): Manifest
     }
 `;

@@ -4,9 +4,26 @@ import {typeDefs} from './v3Schema'
 
 const resolvers: IResolverObject = {
     Query: {
+        annotation: async (source, {manifestId, canvasId, annotationPageId, annotationId}, {dataSources}) => {
+            return dataSources.manifestAPI.getManifest(manifestId).then((res: any) => {
+                return res.items.filter((item: any) => item.id === canvasId)[0]
+            }).then((res: any) => {
+                return res.items.filter((item:any) => item.id === annotationPageId)[0]
+            }).then((res: any) => {
+                console.log(res.items.filter((item:any) => item.id === annotationId))
+                return res.items.filter((item:any) => item.id === annotationId)[0]
+            })
+        },
+        annotationPage: async (source, {manifestId, canvasId, annotationPageId}, {dataSources}) => {
+            return dataSources.manifestAPI.getManifest(manifestId).then((res: any) => {
+                return res.items.filter((item: any) => item.id === canvasId)[0]
+            }).then((res: any) => {
+                return res.items.filter((item:any) => item.id === annotationPageId)[0]
+            })
+        },
         canvas: async (source, {manifestId, canvasId}, {dataSources}) => {
             return dataSources.manifestAPI.getManifest(manifestId).then((res: any) => {
-                return res.items.filter((item: any) => item.id === canvasId)
+                return res.items.filter((item: any) => item.id === canvasId)[0]
             })
         },
         manifest: async (source, {id}, {dataSources}) => {

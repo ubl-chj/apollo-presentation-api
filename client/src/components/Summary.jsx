@@ -25,10 +25,12 @@ export class Summary extends React.Component {
                 return <p>Error : {error.message}</p>
               }
               return (
-                <div style={{width: '300px'}}>
-                  <p style={{backgroundColor: '#92ff92'}}>
+                <div className="Hj59Ib">
+                  <ul>
+                    <li className='list-group-item'>
                     {data.manifest.summary}
-                  </p>
+                    </li>
+                  </ul>
                 </div>
               )
             }}

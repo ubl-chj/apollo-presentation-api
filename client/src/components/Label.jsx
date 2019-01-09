@@ -27,10 +27,12 @@ export class Label extends React.Component {
               return <p>Error : {error.message}</p>
             }
             return (
-              <div style={{width: '300px'}}>
-                <p style={{backgroundColor: '#92ff92'}}>
+              <div className="Hj59Ib">
+                <ul>
+                  <li className='list-group-item'>
                   {data.manifest.label[defaultLang][0]}
-                </p>
+                  </li>
+                </ul>
               </div>
             )
           }}

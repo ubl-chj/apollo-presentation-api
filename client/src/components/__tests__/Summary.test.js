@@ -42,13 +42,17 @@ it("should render summary", async () => {
 
   await wait(0)
 
-  const p = component.root.findByType("p")
-  expect(p.children).toContain("[Handbill of Mr. Becket, [1787] ]")
+  const li = component.root.findByType("li")
+  expect(li.children).toContain("[Handbill of Mr. Becket, [1787] ]")
 })
 
 it("should show error UI", async () => {
   const summaryMock = {
-    request: {query: Summary.query()},
+    request: {
+      query: Summary.query(), variables: {
+        manifestId: mockManifest,
+      },
+    },
     error: new Error()
   }
 
@@ -58,5 +62,6 @@ it("should show error UI", async () => {
     </MockedProvider>)
 
   await wait(0)
-  expect(Summary).toThrowError()
+  const tree = component.toJSON()
+  expect(tree.children).toContain("Network error: ")
 })

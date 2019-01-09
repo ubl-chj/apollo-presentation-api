@@ -9,16 +9,16 @@ export const HomepageItem = (props) => {
   const {id, type, label, format} = props
   const link =  '<a href=' + id + '>' + id + '</a>'
   return (
-    <li className='list-group-item'>
-      <div className='metadata-label'>ID:</div>
-      <div className='list-value' dangerouslySetInnerHTML={{__html: link}}/>
-      <div className='metadata-label'>Type:</div>
-      <div className='list-value' dangerouslySetInnerHTML={{__html: type}}/>
-      <div className='metadata-label'>Label:</div>
-      <div className='list-value' dangerouslySetInnerHTML={{__html: label[defaultLang][0]}}/>
-      <div className='metadata-label'>Format:</div>
-      <div className='list-value' dangerouslySetInnerHTML={{__html: format}}/>
-    </li>
+        <li className='list-group-item'>
+          <div className='metadata-label'>ID:</div>
+          <div className='list-value' dangerouslySetInnerHTML={{__html: link}}/>
+          <div className='metadata-label'>Type:</div>
+          <div className='list-value' dangerouslySetInnerHTML={{__html: type}}/>
+          <div className='metadata-label'>Label:</div>
+          <div className='list-value' dangerouslySetInnerHTML={{__html: label[defaultLang][0]}}/>
+          <div className='metadata-label'>Format:</div>
+          <div className='list-value' dangerouslySetInnerHTML={{__html: format}}/>
+        </li>
   )
 }
 
@@ -45,8 +45,8 @@ export class Homepage extends React.Component {
               return <p>Error : {error.message}</p>
             }
             return (
-              <div>
-                <ul className="list-group">
+              <div className="Hj59Ib">
+                <ul>
                   {data.manifest.homepage.map((hp) =>
                     <HomepageItem key={uuidv4()} id={hp.id} type={hp.type} label={hp.label} format={hp.format}/>)
                   }
