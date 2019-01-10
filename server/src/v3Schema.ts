@@ -44,6 +44,7 @@ export const typeDefs = gql`
     }
     type Thumbnail {
         id: String
+        type: String
         service: Service
     }
     type RequiredStatement {
@@ -108,4 +109,4 @@ export const typeDefs = gql`
         canvas(manifestId: String!, canvasId: String!): Canvas
         manifest(id: String!): Manifest
     }
-`;
+`

@@ -1,6 +1,7 @@
 {
   "extends": [
     "plugin:jsx-a11y/recommended",
+    "plugin:jest/recommended",
     "standard"
   ],
   "env": {
@@ -27,7 +28,7 @@
     "babel/new-cap": "off",
     "indent": [
       "error",
-      4
+      2
     ],
     "object-curly-spacing": "off",
     "quotes": [
@@ -49,6 +50,7 @@
   },
   "plugins": [
     "babel",
+    "jest",
     "react",
     "jsx-a11y"
   ]

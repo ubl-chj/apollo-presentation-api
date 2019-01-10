@@ -1,4 +1,4 @@
-import {RequestOptions, RESTDataSource} from "apollo-datasource-rest"
+import {RequestOptions, RESTDataSource} from 'apollo-datasource-rest'
 
 export class ManifestAPI extends RESTDataSource {
     constructor() {

@@ -1,31 +1,34 @@
 import * as React from 'react'
-import AnnotationPages from './AnnotationPages'
+import AnnotationPages from '../AnnotationPages'
 import Checkbox from 'rc-checkbox'
 import {withRouter} from 'react-router-dom'
+import SplitterLayout from 'react-splitter-layout'
+
 const qs = require('query-string')
 
 class CanvasQueryFormComponent extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       annoPages: true,
       manifestId: '(enter Manifest URI)',
       canvasId: '(enter Canvas URI)',
       renderQueryInfo: true,
-      submitted: false }
+      submitted: false
+    }
     this.handleManifestChange = this.handleManifestChange.bind(this)
     this.handleCanvasChange = this.handleCanvasChange.bind(this)
   }
 
-  handleManifestChange(event) {
-    this.setState({ manifestId: event.target.value })
+  handleManifestChange (event) {
+    this.setState({manifestId: event.target.value})
   }
 
-  handleCanvasChange(event) {
-    this.setState({ canvasId: event.target.value })
+  handleCanvasChange (event) {
+    this.setState({canvasId: event.target.value})
   }
 
-  resolveParams() {
+  resolveParams () {
     const params = qs.parse(this.props.location.search)
     if (Object.keys(params).length) {
       if (params.manifestId && params.canvasId) {
@@ -36,7 +39,7 @@ class CanvasQueryFormComponent extends React.Component {
     }
   }
 
-  renderAnnoPages() {
+  renderAnnoPages () {
     const {renderQueryInfo, annoPages, canvasId, manifestId} = this.state
     if (renderQueryInfo) {
       if (annoPages) {
@@ -51,11 +54,11 @@ class CanvasQueryFormComponent extends React.Component {
     }))
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.resolveParams()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate (prevProps, prevState) {
     const {annoPages, canvasId, manifestId} = this.state
     if (canvasId !== prevState.canvasId) {
       this.resolveParams()
@@ -72,34 +75,24 @@ class CanvasQueryFormComponent extends React.Component {
     }
   }
 
-  render() {
+  render () {
     const {canvasId, manifestId} = this.state
     if (canvasId && manifestId) {
-      return (
-        <div>
-          <div className='Hj59Ib'>Manifest URI</div>
-          <textarea
-            cols="100" rows="3"
-            value={manifestId}
-            name={manifestId}
-            onChange={this.handleManifestChange}
-          />
-          <div className='Hj59Ib'>Canvas URI</div>
-            <textarea
-              cols="100" rows="3"
-              value={canvasId}
-              name={canvasId}
-              onChange={this.handleCanvasChange}
-            />
-          <div className='Hj59Ib'>Annotation Pages</div>
-          <Checkbox
-            defaultChecked
-            aria-label='summary'
-            onChange={this.toggleAnnoPages}
-          />
-          {this.renderAnnoPages()}
-        </div>
-      )
+      return (<div>
+        <div className='Hj59Ib'>Manifest URI</div>
+        <textarea cols="100" rows="3" value={manifestId} name={manifestId} onChange={this.handleManifestChange}/>
+        <div className='Hj59Ib'>Canvas URI</div>
+        <textarea cols="100" rows="3" value={canvasId} name={canvasId} onChange={this.handleCanvasChange}/>
+        <SplitterLayout primaryIndex={0} percentage secondaryInitialSize={80}>
+          <div>
+            <div className='Hj59Ib'>Annotation Pages</div>
+            <Checkbox defaultChecked aria-label='summary' onChange={this.toggleAnnoPages}/>
+          </div>
+          <div>
+            {this.renderAnnoPages()}
+          </div>
+        </SplitterLayout>
+      </div>)
     } else {
       return null
     }

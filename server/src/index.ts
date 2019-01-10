@@ -8,9 +8,9 @@ const resolvers: IResolverObject = {
             return dataSources.manifestAPI.getManifest(manifestId).then((res: any) => {
                 return res.items
             }).then((res: any) => {
-                return res.map((c :any) => c.items)
+                return res.map((c: any) => c.items)
             }).then((res: any) => {
-                return res.map((ap: any) =>  ap.map((p: any) => p.items[0]))
+                return res.map((ap: any) => ap.map((p: any) => p.items[0]))
             }).then((res: any) => {
                 return res.map((a: any) => a.map((an: any) => an.body.service))
             }).then((res: any) => {
@@ -23,16 +23,16 @@ const resolvers: IResolverObject = {
             return dataSources.manifestAPI.getManifest(manifestId).then((res: any) => {
                 return res.items.filter((item: any) => item.id === canvasId)[0]
             }).then((res: any) => {
-                return res.items.filter((item:any) => item.id === annotationPageId)[0]
+                return res.items.filter((item: any) => item.id === annotationPageId)[0]
             }).then((res: any) => {
-                return res.items.filter((item:any) => item.id === annotationId)[0]
+                return res.items.filter((item: any) => item.id === annotationId)[0]
             })
         },
         annotationPage: async (source, {manifestId, canvasId, annotationPageId}, {dataSources}) => {
             return dataSources.manifestAPI.getManifest(manifestId).then((res: any) => {
                 return res.items.filter((item: any) => item.id === canvasId)[0]
             }).then((res: any) => {
-                return res.items.filter((item:any) => item.id === annotationPageId)[0]
+                return res.items.filter((item: any) => item.id === annotationPageId)[0]
             })
         },
         canvas: async (source, {manifestId, canvasId}, {dataSources}) => {
