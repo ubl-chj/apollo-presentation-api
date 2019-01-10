@@ -38,6 +38,9 @@ const Main = () => (
       <li>
           <Link title='Validate Manifest' to='/manifest'>Validate Manifest</Link>
         <p><span className="fTNNmo">GET</span> /manifest?manifestId={'{'}<span style={{color: 'green'}}>manifestURI</span>{'}'}</p>
+        <pre><code>
+          <a href="http://localhost:3300/manifest?manifestId=https://iiif.bodleian.ox.ac.uk/iiif/manifest/eb45e6ee-395d-4da1-8337-d8bfdde72ae9.json">example</a>
+        </code></pre>
       </li>
       <li>
         <Link title='Validate Canvas' to='/canvas'>Validate Canvas</Link>

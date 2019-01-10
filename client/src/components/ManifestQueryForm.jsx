@@ -4,6 +4,7 @@ import Summary from './Summary'
 import Metadata from './Metadata'
 import Homepage from './Homepage'
 import Canvases from './Canvases'
+import ImageServices from './ImageServices'
 import Checkbox from 'rc-checkbox'
 import {withRouter} from 'react-router-dom'
 const qs = require('query-string')
@@ -17,6 +18,7 @@ class ManifestQueryFormComponent extends React.Component {
       metadata: false,
       homepage: false,
       canvases: false,
+      imageServices: false,
       manifestId: '(enter Manifest URI)',
       renderQueryInfo: false,
       submitted: false }
@@ -83,6 +85,15 @@ class ManifestQueryFormComponent extends React.Component {
     }
   }
 
+  renderImageServices() {
+    const {renderQueryInfo, imageServices, manifestId} = this.state
+    if (renderQueryInfo) {
+      if (imageServices) {
+        return <ImageServices manifestId={manifestId} type='ImageService2'/>
+      }
+    }
+  }
+
   toggleLabel = () => {
     this.setState((state) => ({
       label: !state.label,
@@ -113,12 +124,18 @@ class ManifestQueryFormComponent extends React.Component {
     }))
   }
 
+  toggleImageServices = () => {
+    this.setState((state) => ({
+      imageServices: !state.imageServices,
+    }))
+  }
+
   componentDidMount() {
     this.resolveParams()
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {manifestId, label, summary, metadata, homepage, canvases} = this.state
+    const {manifestId, label, summary, metadata, homepage, canvases, imageServices} = this.state
     if (manifestId !== prevState.manifestId) {
       this.resolveParams()
     }
@@ -126,8 +143,9 @@ class ManifestQueryFormComponent extends React.Component {
       || label !== prevState.label
       || metadata !== prevState.metadata
       || homepage !== prevState.homepage
-      || canvases !== prevState.canvases) {
-      if (summary || label || metadata || homepage || canvases) {
+      || canvases !== prevState.canvases
+      || imageServices !== prevState.imageServices) {
+      if (summary || label || metadata || homepage || canvases || imageServices) {
         this.setState({renderQueryInfo: true})
       } else {
         this.setState({renderQueryInfo: false})
@@ -156,6 +174,9 @@ class ManifestQueryFormComponent extends React.Component {
           <div className='Hj59Ib'>Canvases</div>
           <Checkbox aria-label='summary' onChange={this.toggleCanvases}/>
           {this.renderCanvases()}
+          <div className='Hj59Ib'>Image Services</div>
+          <Checkbox aria-label='summary' onChange={this.toggleImageServices}/>
+          {this.renderImageServices()}
         </div>)
     } else {
       return null

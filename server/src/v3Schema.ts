@@ -102,6 +102,7 @@ export const typeDefs = gql`
         items: [Canvas]
     }
     type Query {
+        imageServices(manifestId: String!, type: String!, profile: String): [Service]
         annotation(manifestId: String!, canvasId: String!, annotationPageId: String!, annotationId: String!): Annotation
         annotationPage(manifestId: String!, canvasId: String!, annotationPageId: String!): AnnotationPage
         canvas(manifestId: String!, canvasId: String!): Canvas
