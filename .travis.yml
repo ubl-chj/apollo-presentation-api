@@ -1,0 +1,22 @@
+sudo: required
+
+language: node_js
+
+env:
+  - CLIENT_APP_NAME=ubl-chj/apav-client SERVER_APP_NAME=ubl-chj/apav-server
+
+notifications:
+  email:
+    - chjohnson39@gmail.com
+
+node_js:
+  - 8
+
+services:
+  - docker
+
+before_install:
+  - cd packages/client
+  - docker build -t $CLIENT_APP_NAME:$TRAVIS_BUILD_ID .
+  - cd ../server
+  - docker build -t $SERVER_APP_NAME:$TRAVIS_BUILD_ID .

@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  apav-client:
+    image: ubl-chj/apav-client:0.1.0
+    container_name: apav-client
+    ports:
+      - "5000:5000"
+  apav-server:
+    image: ubl-chj/apav-server:0.1.0
+    container_name: apav-server
+    ports:
+      - "4000:4000"

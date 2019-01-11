@@ -1,24 +1,32 @@
 # Apollo Presentation API
 
-A GraphQL server to support IIIF Presentation API validation
+A GraphQL implementation to support IIIF Presentation API validation
 
 ## Installation
 
 1. Clone this repository: `git clone https://github.com/ubl-chj/apollo-presentation-api.git`
-2. run `npm install`
+2. run `npm install` for all packages and root
 
 ## Server Only Usage
-1. cd server
+1. cd packages/server
 2. run `npm start`
 3. go to http://localhost:4000
 
-## React Client Usage (WIP)
-1. start server
-2. cd client
-3. run `npm start`
+## React Client Usage
+![](docs/screenshot.png?raw=true)
+1. `lerna run start`
 
-Example queries:
+Client endpoint accepts query parameters:
+`http://localhost:3300/manifest?manifestId=https://iiif.bodleian.ox.ac.uk/iiif/manifest/eb45e6ee-395d-4da1-8337-d8bfdde72ae9.json`
 
+## E2E Tests
+1. cd packages/e2e-tests
+2. `npm test`
+
+## E2E Fixtures
+spec tests run against json fixtures in the `cypress/fixtures` directory served from http://localhost:5000
+
+### Example Server Queries
 ```graphql
 # Summary and Metadata
 query {
@@ -39,9 +47,17 @@ query {
   {structures {type, items {type, items {type, id}}}}}
 
 # Get A Single Canvas
-query {
-  canvas(manifestId: "https://iiif.bodleian.ox.ac.uk/iiif/manifest/eb45e6ee-395d-4da1-8337-d8bfdde72ae9.json",
-    canvasId:"https://iiif.bodleian.ox.ac.uk/iiif/canvas/93dc199e-1b71-496c-a11d-48d2ef6e99a5.json")
-    {id, label, width, height}
- }
+query { canvas(manifestId: $manifestId, canvasId: $canvasId),
+            {id, label, width, height}
+          }
+
+# Get an Annotation Page
+query { annotationPage(manifestId: $manifestId, canvasId: $canvasId, annotationPageId: $annotationPageId),
+            {items {id, type, motivation, target, body {id, type, format, width, height, service {id, type, profile}}}}
+          }
+
+# Get an Annotation
+query { annotation(manifestId: $manifestId, canvasId: $canvasId, annotationPageId: $annotationPageId, annotationId: $annotationId),
+            {id, type, motivation, target, body {id, type, format, width, height, service {id, type, profile}}}
+          }
 ```
