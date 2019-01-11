@@ -27,17 +27,11 @@ const resolvers: IResolvers = {
         },
         imageServices: async (source, {manifestId, type, profile}, {dataSources}) => {
             return dataSources.manifestAPI.getManifest(manifestId).then((res: any) => {
-                return res.items
-            }).then((res: any) => {
-                return res.map((c: any) => c.items)
-            }).then((res: any) => {
-                return res.map((ap: any) => ap.map((p: any) => p.items[0]))
-            }).then((res: any) => {
-                return res.map((a: any) => a.map((an: any) => an.body.service))
-            }).then((res: any) => {
-                return res.map((svc: any) => svc.filter((s: any) => s.type === type))
-            }).then((res: any) => {
-                return res.map((s: any) => s[0])
+                return res.items.reduce((accumulator: any, currentValue: any) => {
+                    return [...accumulator, ...currentValue.items]
+                }, []).reduce((accumulator: any, currentValue: any) => {
+                    return [...accumulator, ...currentValue.items]
+                }, []).map((a: any) => a.body.service).filter((s: any) => s.type === type)
             })
         },
         manifest: async (source, {id}, {dataSources}) => {
