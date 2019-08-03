@@ -8,7 +8,8 @@ const uuidv4 = require('uuid/v4')
 export const AnnotationsItem = (props) => {
   const {id, type, motivation, target, body, manifestId, canvasId, annotationPageId} = props
   const targetlink = '<a href=' + target + '>' + target + '</a>'
-  const bodylink = '<a href=' + body.id + '>' + body.id + '</a>'
+  const bodylink = body && body.id.contains('.jpg') ? '<img alt="" src=' + body.id + '/>'
+    : '<a href=' + body.id + '>' + body.id + '</a>'
   return (
     <div className="Hj59Ib">
       <ul id='annotations'>
@@ -30,25 +31,25 @@ export const AnnotationsItem = (props) => {
             </li>
             <li className='list-group-item'>
               <div className='metadata-label'>Type:</div>
-              <div className='list-value' dangerouslySetInnerHTML={{__html: body.type}}/>
+              <div className='list-value' dangerouslySetInnerHTML={{__html: body && body.type}}/>
             </li>
             <li className='list-group-item'>
               <div className='metadata-label'>Format:</div>
-              <div className='list-value' dangerouslySetInnerHTML={{__html: body.format}}/>
+              <div className='list-value' dangerouslySetInnerHTML={{__html: body && body.format}}/>
             </li>
             <div className='metadata-label'>Service:</div>
             <ul>
               <li className='list-group-item'>
                 <div className='metadata-label'>Service Id:</div>
-                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service.id}}/>
+                <div className='list-value' dangerouslySetInnerHTML={{__html: body && body.service.id}}/>
               </li>
               <li className='list-group-item'>
                 <div className='metadata-label'>Service Type:</div>
-                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service.type}}/>
+                <div className='list-value' dangerouslySetInnerHTML={{__html: body && body.service.type}}/>
               </li>
               <li className='list-group-item'>
                 <div className='metadata-label'>Service Profile:</div>
-                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service.profile}}/>
+                <div className='list-value' dangerouslySetInnerHTML={{__html: body && body.service.profile}}/>
               </li>
             </ul>
           </ul>

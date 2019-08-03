@@ -29,25 +29,25 @@ export const AnnotationItem = (props) => {
             </li>
             <li className='list-group-item'>
               <div className='metadata-label'>Type:</div>
-              <div className='list-value' dangerouslySetInnerHTML={{__html: body.type}}/>
+              <div className='list-value' dangerouslySetInnerHTML={{__html: body && body.type}}/>
             </li>
             <li className='list-group-item'>
               <div className='metadata-label'>Format:</div>
-              <div className='list-value' dangerouslySetInnerHTML={{__html: body.format}}/>
+              <div className='list-value' dangerouslySetInnerHTML={{__html: body && body.format}}/>
             </li>
             <div className='metadata-label'>Service:</div>
             <ul>
               <li className='list-group-item'>
                 <div className='metadata-label'>Service Id:</div>
-                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service.id}}/>
+                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service && body.service.id}}/>
               </li>
               <li className='list-group-item'>
                 <div className='metadata-label'>Service Type:</div>
-                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service.type}}/>
+                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service && body.service.type}}/>
               </li>
               <li className='list-group-item'>
                 <div className='metadata-label'>Service Profile:</div>
-                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service.profile}}/>
+                <div className='list-value' dangerouslySetInnerHTML={{__html: body.service && body.service.profile}}/>
               </li>
             </ul>
           </ul>
