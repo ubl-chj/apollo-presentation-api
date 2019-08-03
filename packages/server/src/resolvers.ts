@@ -38,13 +38,13 @@ export const resolvers: IResolvers = {
         manifestv2: async (source, {id}, {dataSources}): Promise<string> => {
             return dataSources.manifestAPIv2.getManifest(id)
         },
-        imageServicesv2: async (source, {manifestId, type}, {dataSources}): Promise<string> => {
+        imageServicesv2: async (source, {manifestId, profile}, {dataSources}): Promise<string> => {
             return dataSources.manifestAPIv2.getManifest(manifestId).then((res: any) => {
                 return res.sequences.reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.canvases]
                 }, []).reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.images]
-                }, []).map((a: any) => a.resource.service)
+                }, []).map((a: any) => a.resource.service).filter((s: any) => s.profile === profile)
             })
         },
     },
