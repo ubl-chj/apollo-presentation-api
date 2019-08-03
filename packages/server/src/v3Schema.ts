@@ -5,7 +5,7 @@ export const typeDefs = gql`
         id: String!
         type: String!
         label: Label
-        summary: String!
+        summary: String
         metadata: [Metadata]!
         homepage: [Homepage]!
         logo: [Logo]!
@@ -16,6 +16,23 @@ export const typeDefs = gql`
         items(id: String): [Canvas]!
         structures: [Structure]!
     }
+    type Manifestv2 {
+        id: String!
+        type: String!
+        label: String
+        license: String
+        attribution: String
+        logo: String
+        related: [String]
+        seeAlso: String
+        metadata: [Metadatav2]
+        sequences: [Sequence]!
+        thumbnail: String
+        structures: [Structurev2]
+    }
+    type Sequence {
+        canvases: [Canvasv2]!
+    }
     type Metadata {
         label: Label
         value: Value
@@ -25,6 +42,10 @@ export const typeDefs = gql`
     }
     type Value {
         en: [String]!
+    }
+    type Metadatav2 {
+        label: String
+        value: String
     }
     type Homepage {
         id: String
@@ -47,6 +68,7 @@ export const typeDefs = gql`
         type: String
         service: Service
     }
+    
     type RequiredStatement {
         label: Label
         value: Value
@@ -71,6 +93,14 @@ export const typeDefs = gql`
         items: [AnnotationPage]!
         metadata: [Metadata]
     }
+    type Canvasv2 {
+        id: String
+        type: String
+        label: String
+        width: Int
+        height: Int
+        images: [Annotationv2]!
+    }
     type AnnotationPage {
         id: String
         type: String
@@ -82,6 +112,13 @@ export const typeDefs = gql`
         motivation: String
         target: String
         body: Body
+    }
+    type Annotationv2 {
+        id: String
+        type: String
+        motivation: String
+        on: String
+        resource: Body
     }
     type Body {
         id: String
@@ -97,6 +134,14 @@ export const typeDefs = gql`
         label: Label
         items: [Range]
     }
+    type Structurev2 {
+        id: String
+        type: String
+        label: String
+        ranges: [String]
+        canvases: [String]
+        metadata: [Metadatav2]
+    }
     type Range {
         id: String
         type: String
@@ -108,5 +153,7 @@ export const typeDefs = gql`
         annotationPage(manifestId: String!, canvasId: String!, annotationPageId: String!): AnnotationPage
         canvas(manifestId: String!, canvasId: String!): Canvas
         manifest(id: String!): Manifest
+        manifestv2(id: String!): Manifestv2
+        imageServicesv2(manifestId: String!, profile: String): [Service]
     }
 `

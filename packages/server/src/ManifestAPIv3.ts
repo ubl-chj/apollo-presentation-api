@@ -1,12 +1,12 @@
 import {RequestOptions, RESTDataSource} from 'apollo-datasource-rest'
 
-export class ManifestAPI extends RESTDataSource {
-    constructor() {
+export class ManifestAPIv3 extends RESTDataSource {
+    public constructor() {
         super()
         this.baseURL = ''
     }
 
-    parseBody(response: any) {
+    public parseBody(response: any) {
         if (response.headers.get('Content-Type').includes('json')) {
             return response.json()
         } else {
@@ -14,11 +14,11 @@ export class ManifestAPI extends RESTDataSource {
         }
     }
 
-    willSendRequest(request: RequestOptions) {
+    public willSendRequest(request: RequestOptions) {
         request.headers.set('Accept', this.context.version)
     }
 
-    async getManifest(id: any) {
+    public async getManifest(id: string) {
         return this.get(`${id}`)
     }
 }

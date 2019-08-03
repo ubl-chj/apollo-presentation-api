@@ -7,15 +7,15 @@
   "author": "Christopher Johnson",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/graphql": "^14.0.4",
-    "nodemon": "^1.18.4",
+    "@types/graphql": "^14.2.3",
+    "nodemon": "^1.19.1",
     "ts-node": "^7.0.1",
-    "typescript": "^3.1.2"
+    "typescript": "^3.5.3"
   },
   "dependencies": {
-    "apollo-datasource-rest": "^0.2.1",
-    "apollo-server": "^2.3.1",
-    "graphql": "^14.0.2"
+    "apollo-datasource-rest": "^0.2.2",
+    "apollo-server": "^2.8.1",
+    "graphql": "^14.4.2"
   },
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts",
