@@ -47,5 +47,14 @@ export const resolvers: IResolvers = {
                 }, []).map((a: any) => a.resource.service).filter((s: any) => s.profile === profile)
             })
         },
+        imageServicesv2NoProfile: async (source, {manifestId}, {dataSources}): Promise<string> => {
+            return dataSources.manifestAPIv2.getManifest(manifestId).then((res: any) => {
+                return res.sequences.reduce((accumulator: any, currentValue: any) => {
+                    return [...accumulator, ...currentValue.canvases]
+                }, []).reduce((accumulator: any, currentValue: any) => {
+                    return [...accumulator, ...currentValue.images]
+                }, []).map((a: any) => a.resource.service)
+            })
+        },
     },
 }

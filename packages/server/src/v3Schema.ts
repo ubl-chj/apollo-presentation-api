@@ -155,5 +155,6 @@ export const typeDefs = gql`
         manifest(id: String!): Manifest
         manifestv2(id: String!): Manifestv2
         imageServicesv2(manifestId: String!, profile: String): [Service]
+        imageServicesv2NoProfile(manifestId: String!): [Service]
     }
 `
