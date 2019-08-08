@@ -25,7 +25,7 @@ export const resolvers: IResolvers = {
         },
         imageServices: async (source, {manifestId, type, profile}, {dataSources}): Promise<string> => {
             return dataSources.manifestAPIv3.getManifest(manifestId).then((res: any) => {
-                return res.items.reduce((accumulator: any, currentValue: any) => {
+                return res.items && res.items.reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.items]
                 }, []).reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.items]
@@ -40,7 +40,7 @@ export const resolvers: IResolvers = {
         },
         imageServicesv2: async (source, {manifestId, profile}, {dataSources}): Promise<string> => {
             return dataSources.manifestAPIv2.getManifest(manifestId).then((res: any) => {
-                return res.sequences.reduce((accumulator: any, currentValue: any) => {
+                return res.sequences && res.sequences.reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.canvases]
                 }, []).reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.images]
@@ -49,7 +49,7 @@ export const resolvers: IResolvers = {
         },
         imageServicesv2NoProfile: async (source, {manifestId}, {dataSources}): Promise<string> => {
             return dataSources.manifestAPIv2.getManifest(manifestId).then((res: any) => {
-                return res.sequences.reduce((accumulator: any, currentValue: any) => {
+                return res.sequences && res.sequences.reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.canvases]
                 }, []).reduce((accumulator: any, currentValue: any) => {
                     return [...accumulator, ...currentValue.images]
