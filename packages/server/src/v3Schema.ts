@@ -4,7 +4,7 @@ export const typeDefs = gql`
     type Manifest {
         id: String!
         type: String!
-        label: Label
+        label: String
         summary: String
         metadata: [Metadata]!
         homepage: [Homepage]!
@@ -14,21 +14,28 @@ export const typeDefs = gql`
         partOf: PartOf
         behavior: Behavior
         items(id: String): [Canvas]!
+        seeAlso: [SeeAlso]
         structures: [Structure]!
     }
     type Manifestv2 {
         id: String!
+        description: String
         type: String!
         label: String
         license: String
         attribution: String
         logo: String
         related: [String]
-        seeAlso: String
+        seeAlso: [SeeAlso]
         metadata: [Metadatav2]
         sequences: [Sequence]!
         thumbnail: String
         structures: [Structurev2]
+    }
+
+    type SeeAlso {
+        id: String!
+        format: String!
     }
     type Sequence {
         canvases: [Canvasv2]!
